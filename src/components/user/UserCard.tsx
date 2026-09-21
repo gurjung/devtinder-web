@@ -9,8 +9,10 @@ interface UserCardProps {
 }
 
 const UserCard = ({ user }: UserCardProps) => {
-  const { _id, firstName, lastName, age, gender, about } = user;
   const dispatch = useDispatch();
+
+  if (!user) return null;
+  const { _id, firstName, lastName, age, gender, about } = user;
 
   const handleSendRequest = async (status: string, userId?: string) => {
     if (!userId) return;
