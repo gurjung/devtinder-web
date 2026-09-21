@@ -55,7 +55,7 @@ const EditProfile = ({ user }: EditProfileProps) => {
 
   return (
     <>
-      <div className="flex justify-center my-10">
+      <div className="flex justify-center my-10 pb-20">
         <div className="flex justify-center mx-10">
           <div className="card bg-base-300 w-96 shadow-xl">
             <div className="card-body">
@@ -109,21 +109,64 @@ const EditProfile = ({ user }: EditProfileProps) => {
                   <div className="label">
                     <span className="label-text">Gender:</span>
                   </div>
-                  <input
-                    type="text"
-                    value={gender}
-                    className="input input-bordered w-full max-w-xs"
-                    onChange={(e) => setGender(e.target.value)}
-                  />
+                  <div className="dropdown dropdown-bottom w-full">
+                    <div
+                      tabIndex={0}
+                      role="button"
+                      className="select select-bordered w-full flex items-center justify-between font-normal"
+                    >
+                      {gender
+                        ? gender.charAt(0).toUpperCase() + gender.slice(1)
+                        : "Select Gender"}
+                    </div>
+                    <ul
+                      tabIndex={0}
+                      className="dropdown-content menu bg-base-100 rounded-box z-10 w-full p-2 shadow-lg border border-base-200 mt-1"
+                    >
+                      <li>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setGender("male");
+                            (document.activeElement as HTMLElement)?.blur();
+                          }}
+                        >
+                          Male
+                        </button>
+                      </li>
+                      <li>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setGender("female");
+                            (document.activeElement as HTMLElement)?.blur();
+                          }}
+                        >
+                          Female
+                        </button>
+                      </li>
+                      <li>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setGender("others");
+                            (document.activeElement as HTMLElement)?.blur();
+                          }}
+                        >
+                          Others
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
                 </label>
                 <label className="form-control w-full max-w-xs my-2">
                   <div className="label">
                     <span className="label-text">About:</span>
                   </div>
-                  <input
-                    type="text"
+                  <textarea
                     value={about}
-                    className="input input-bordered w-full max-w-xs"
+                    className="textarea textarea-bordered w-full max-w-xs h-24 resize-none"
+                    placeholder="Tell us about yourself..."
                     onChange={(e) => setAbout(e.target.value)}
                   />
                 </label>
