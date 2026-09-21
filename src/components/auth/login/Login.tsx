@@ -11,6 +11,7 @@ const Login = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [isLoginForm, setIsLoginForm] = useState(true);
+  const [error, setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -32,7 +33,19 @@ const Login = () => {
     }
   };
 
-  const handleSignUp = async () => {};
+  const handleSignUp = async () => {
+    try {
+      const res = await axios.post(
+        BASE_URL + "/signup",
+        { firstName, lastName, emailId, password },
+        { withCredentials: true },
+      );
+      dispatch(addUser(res.data.data));
+      return navigate("/profile");
+    } catch (err) {
+      setError(err?.response?.data || "Something went wrong");
+    }
+  };
 
   return (
     <div className="flex justify-center my-10">
@@ -91,7 +104,7 @@ const Login = () => {
               />
             </label>
           </div>
-          {/* <p className="text-red-500">{error}</p> */}
+          <p className="text-red-500">{error}</p>
           <div className="card-actions justify-center m-2">
             <button
               className="btn btn-primary"

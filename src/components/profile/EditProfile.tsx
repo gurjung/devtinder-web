@@ -23,16 +23,26 @@ const EditProfile = ({ user }: EditProfileProps) => {
   const saveProfile = async () => {
     setError("");
     try {
+      const updateData: {
+        firstName: string;
+        lastName: string;
+        photoUrl?: string;
+        about?: string;
+        age?: string | number;
+        gender?: string;
+      } = {
+        firstName,
+        lastName,
+        photoUrl,
+        about,
+      };
+
+      if (age) updateData.age = age;
+      if (gender && gender.trim() !== "") updateData.gender = gender;
+
       const res = await axios.patch(
         BASE_URL + "/profile/edit",
-        {
-          firstName,
-          lastName,
-          photoUrl,
-          age,
-          gender,
-          about,
-        },
+        updateData,
         { withCredentials: true },
       );
       dispatch(addUser(res?.data?.data));
