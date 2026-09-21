@@ -2,12 +2,14 @@ import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 // Define the shape of your user object
 export interface User {
-  id: string;
+  _id: string;
   firstName: string;
   lastName: string;
-  email: string;
-  photoUrl: string;
-  // Add other user fields as needed
+  email?: string;
+  photoUrl?: string;
+  age?: string;
+  gender?: string;
+  about?: string;
 }
 
 // State can either be a User or null
