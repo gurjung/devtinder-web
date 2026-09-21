@@ -1,23 +1,12 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import type { User } from "@/types/user";
 
-// Define the shape of your user object
-export interface User {
-  _id: string;
-  firstName: string;
-  lastName: string;
-  email?: string;
-  photoUrl?: string;
-  age?: string;
-  gender?: string;
-  about?: string;
-}
-
-// State can either be a User or null
-type UserState = User | null;
+export type { User };
+export type UserState = User | null;
 
 const initialState: UserState = null as UserState;
 
-const userSlice = createSlice({
+export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
