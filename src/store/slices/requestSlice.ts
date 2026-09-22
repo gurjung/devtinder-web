@@ -1,15 +1,7 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import type { User } from "./userSlice";
+import type { ConnectionRequest } from "@/types/request";
 
-export interface ConnectionRequest {
-  _id: string;
-  fromUserId: User;
-  toUserId?: string | User;
-  status?: "interested" | "ignored" | "accepted" | "rejected" | string;
-  createdAt?: string;
-  updatedAt?: string;
-}
-
+export type { ConnectionRequest };
 export type RequestsState = ConnectionRequest[] | null;
 
 const initialState: RequestsState = null;
@@ -38,4 +30,3 @@ const requestSlice = createSlice({
 export const { addRequests, removeRequest } = requestSlice.actions;
 
 export default requestSlice.reducer;
-
