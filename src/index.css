@@ -1,2 +1,121 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+:root {
+  font-family: var(--font-sans);
+  color-scheme: light dark;
+}
+
+/* Developer Light Mode Refinements */
+[data-theme="light"] {
+  --color-base-100: oklch(100% 0 0);
+  --color-base-200: oklch(97.5% 0.005 250);
+  --color-base-300: oklch(93.5% 0.01 250);
+  --color-base-content: oklch(20% 0.02 260);
+  --color-primary: oklch(52% 0.22 268);
+  --color-primary-content: oklch(98% 0.01 268);
+  --color-secondary: oklch(58% 0.18 200);
+  --color-secondary-content: oklch(98% 0.01 200);
+  --color-accent: oklch(62% 0.19 160);
+  --color-accent-content: oklch(98% 0.01 160);
+  --color-neutral: oklch(18% 0.02 260);
+  --color-neutral-content: oklch(96% 0.01 260);
+}
+
+/* Developer Dark Mode Refinements (Linear / Obsidian Aesthetic) */
+[data-theme="dark"] {
+  --color-base-100: oklch(15.5% 0.015 255);
+  --color-base-200: oklch(19% 0.018 255);
+  --color-base-300: oklch(23.5% 0.02 255);
+  --color-base-content: oklch(95% 0.01 250);
+  --color-primary: oklch(65% 0.22 268);
+  --color-primary-content: oklch(98% 0.01 268);
+  --color-secondary: oklch(68% 0.17 200);
+  --color-secondary-content: oklch(15% 0.02 200);
+  --color-accent: oklch(72% 0.18 160);
+  --color-accent-content: oklch(15% 0.02 160);
+  --color-neutral: oklch(12% 0.01 260);
+  --color-neutral-content: oklch(90% 0.01 260);
+}
+
+/* Grid Background for Developer Atmosphere */
+.dev-grid-bg {
+  background-image: radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0);
+  background-size: 28px 28px;
+}
+
+/* Subtle Shimmer Animation for Skeletons */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-base-200) 0%,
+    var(--color-base-300) 50%,
+    var(--color-base-200) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.75s ease-in-out infinite;
+}
+
+/* Radar Pulse for Feed Empty State */
+@keyframes radar-pulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+
+.radar-ping {
+  animation: radar-pulse 3s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+/* Card Glow Effect */
+.card-glow-primary:hover {
+  box-shadow: 0 12px 30px -10px oklch(from var(--color-primary) l c h / 0.25);
+}
+
+/* Custom Sleek Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: color-mix(in oklch, currentColor 20%, transparent);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in oklch, currentColor 35%, transparent);
+}
+
+/* Smooth Focus Rings */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}

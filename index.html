@@ -4,7 +4,39 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>devtinder-web</title>
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="description"
+      content="DevTinder — The premier networking platform for developers to discover peers, collaborate on projects, and build meaningful tech connections."
+    />
+    <title>DevTinder — Discover &amp; Connect with Developers</title>
+
+    <!-- Google Fonts Preconnect & Inter / Plus Jakarta Sans & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Theme Initialization to prevent Flash of Unstyled Content (FOUC) -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('devtinder_theme');
+          var theme = stored;
+          if (!theme || theme === 'system') {
+            theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          }
+          document.documentElement.setAttribute('data-theme', theme);
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
