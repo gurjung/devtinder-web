@@ -1,15 +1,18 @@
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "@/store/store";
+import { ThemeProvider } from "@/context/ThemeContext";
 import AppRoutes from "@/app/routes";
 import "./App.css";
 
 export function App() {
   return (
     <Provider store={store}>
-      <BrowserRouter basename="/">
-        <AppRoutes />
-      </BrowserRouter>
+      <ThemeProvider>
+        <BrowserRouter basename="/">
+          <AppRoutes />
+        </BrowserRouter>
+      </ThemeProvider>
     </Provider>
   );
 }
